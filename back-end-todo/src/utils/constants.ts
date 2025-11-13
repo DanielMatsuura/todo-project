@@ -1,0 +1,1 @@
+export const limit_pagination = 5;
