@@ -6,9 +6,7 @@ export const getTodosService = async (
   limit: number,
   userId: string | undefined,
 ): Promise<{ data: ITodo[]; total: number; totalPages: number }> => {
-  if (!userId) {
-    throw new Error("User ID is required");
-  }
+  if (!userId) throw { status: 400, message: "User Id is required" };
 
   const skip = (page - 1) * limit;
 
@@ -43,7 +41,7 @@ export const deleteTodoService = async (id: string): Promise<ITodo | null> => {
 export const toggleStatusTodoService = async (id: string): Promise<ITodo | null> => {
   var todoUpdated = await Todo.findById(id);
 
-  if (!todoUpdated) throw Error("Todo not found");
+  if (!todoUpdated) throw { status: 404, message: "Todo not found" };
 
   todoUpdated.state = todoUpdated.state === TodoStatus.Pending ? TodoStatus.Completed : TodoStatus.Pending;
 

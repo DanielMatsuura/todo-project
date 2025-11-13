@@ -2,6 +2,8 @@ import { DialogHeader, DialogFooter, Dialog, DialogContent, DialogTitle, DialogD
 import { Button } from "../ui/button";
 import { useState } from "react";
 import { Spinner } from "../ui/spinner";
+import toast from "react-hot-toast";
+import { GetErrorMessage } from "@/utils/errors";
 
 interface ConfirmDialogProps {
   open: boolean;
@@ -21,6 +23,8 @@ const ConfirmDialog: React.FC<ConfirmDialogProps> = ({ open, onOpenChange, handl
     try {
       await handleDelete();
       onOpenChange(false);
+    } catch (error) {
+      toast.error(GetErrorMessage(error));
     } finally {
       setLoading(false);
     }
@@ -39,7 +43,10 @@ const ConfirmDialog: React.FC<ConfirmDialogProps> = ({ open, onOpenChange, handl
         <DialogFooter className="flex justify-end gap-2">
           <Button
             variant="outline"
-            onClick={() => onOpenChange(false)}
+            onClick={(e) => {
+              e.preventDefault();
+              onOpenChange(false)
+            }}
             className="cursor-pointer"
             disabled={loading}
           >

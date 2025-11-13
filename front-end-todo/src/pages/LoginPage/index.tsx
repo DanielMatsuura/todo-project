@@ -9,7 +9,6 @@ import SocialLoginButton from "@/components/auth/SocialLoginButton";
  * - Auth0
  * - Google
  * - GitHub
- *
  * Provides a button to sign up if the user does not have an account.
  */
 const LoginPage: React.FC = () => {

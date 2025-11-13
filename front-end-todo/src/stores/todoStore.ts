@@ -1,6 +1,6 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import type { TodoItem, TodoItemBase } from "@/types/TodoItem";
-import { todoService } from "@/api/todoService";
+import { todoService } from "@/services/todoService";
 import { limit_pagination } from "@/utils/constants";
 
 /**

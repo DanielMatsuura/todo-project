@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { connectDB } from "./config/db";
 import todoRoutes from "./routes/todo.routes"
 import cors from 'cors';
+import { errorHandler } from "./middleware/errorHandler";
 
 dotenv.config();
 
@@ -18,6 +19,8 @@ app.use(express.json());
 connectDB();
 
 app.use("/api/todos", todoRoutes);
+
+app.use(errorHandler);
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {

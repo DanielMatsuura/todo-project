@@ -15,6 +15,8 @@ import { useForm } from "react-hook-form";
 import { todoSchema, type TodoFormData } from "@/validation/todoSchema";
 import { useState } from "react";
 import { Spinner } from "../ui/spinner";
+import toast from "react-hot-toast";
+import { GetErrorMessage } from "@/utils/errors";
 
 interface Props {
   open: boolean;
@@ -50,6 +52,8 @@ const TodoFormDialog: React.FC<Props> = ({ open, onOpenChange, onSubmit, todoToE
       await onSubmit(data);
       onOpenChange(false);
       reset();
+    } catch (error) {
+      toast.error(GetErrorMessage(error));
     } finally {
       setLoading(false);
     }
@@ -103,7 +107,15 @@ const TodoFormDialog: React.FC<Props> = ({ open, onOpenChange, onSubmit, todoToE
           </div>
 
           <DialogFooter>
-            <Button variant="outline" className="cursor-pointer" onClick={() => onOpenChange(false)} disabled={loading}>
+            <Button
+              variant="outline"
+              className="cursor-pointer"
+              onClick={(e) => {
+                e.preventDefault();
+                onOpenChange(false);
+              }}
+              disabled={loading}
+            >
               Cancel
             </Button>
             <Button className="cursor-pointer" type="submit" disabled={loading}>

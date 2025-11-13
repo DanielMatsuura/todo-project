@@ -25,6 +25,8 @@ import DeleteTodoOption from "./DeleteTodo";
 import ToggleStatusTodo from "./ToggleStatusTodo";
 import { useUser } from "@/hooks/useUser";
 import { todoStore } from "@/stores/todoStore";
+import toast from "react-hot-toast";
+import { GetErrorMessage } from "@/utils/errors";
 
 /**
  * Displays a paginated table of todos with options to edit, delete, and toggle status.
@@ -34,8 +36,12 @@ const TodoTable: React.FC = observer(() => {
   const { page, totalPages } = todoStore;
 
   const loadTodosHandler = async () => {
-    const token = await getAccessTokenSilently();
-    await todoStore.loadTodos(token);
+    try {
+      const token = await getAccessTokenSilently();
+      await todoStore.loadTodos(token);
+    } catch (error) {
+      toast.error(GetErrorMessage(error));
+    }
   };
 
   useEffect(() => {

@@ -3,6 +3,8 @@ import { Clock, SquareCheckBig } from "lucide-react";
 import { todoStore } from "@/stores/todoStore";
 import { useUser } from "@/hooks/useUser";
 import { TodoStatus, type TodoItem } from "@/types/TodoItem";
+import toast from "react-hot-toast";
+import { GetErrorMessage } from "@/utils/errors";
 
 interface Props {
   todo: TodoItem;
@@ -16,7 +18,11 @@ const ToggleStatusTodo: React.FC<Props> = ({ todo }) => {
   const { getAccessTokenSilently } = useUser();
 
   const handleToggle = async () => {
-    await todoStore.toggleTodo(todo.id, await getAccessTokenSilently());
+    try {
+      await todoStore.toggleTodo(todo.id, await getAccessTokenSilently());
+    } catch (error) {
+      toast.error(GetErrorMessage(error));
+    }
   };
 
   return (

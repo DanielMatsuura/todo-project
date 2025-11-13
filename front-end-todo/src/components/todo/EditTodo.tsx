@@ -20,7 +20,7 @@ const EditTodoButton: React.FC<Props> = ({ todo }) => {
   const { getAccessTokenSilently } = useUser();
 
   const handleUpdate = async (updatedTodo: TodoItemBase) => {
-    todoStore.updateTodo(
+    await todoStore.updateTodo(
       {
         ...todo,
         ...updatedTodo
