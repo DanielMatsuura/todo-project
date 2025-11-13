@@ -5,6 +5,7 @@ import TodoFormDialog from "./TodoFormDialog";
 import type { TodoItem, TodoItemBase } from "@/types/TodoItem";
 import { todoStore } from "@/stores/todoStore";
 import { useUser } from "@/hooks/useUser";
+import toast from "react-hot-toast";
 
 interface Props {
   todo: TodoItem;
@@ -25,7 +26,9 @@ const EditTodoButton: React.FC<Props> = ({ todo }) => {
         ...todo,
         ...updatedTodo
       },
-      await getAccessTokenSilently());
+      await getAccessTokenSilently()
+    );
+    toast.success("The todo was edited successfully.");
   };
 
   return (

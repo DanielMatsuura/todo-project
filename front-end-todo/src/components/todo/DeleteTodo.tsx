@@ -4,6 +4,7 @@ import { Trash2Icon } from "lucide-react";
 import ConfirmDialog from "./ConfirmDialog";
 import { useUser } from "@/hooks/useUser";
 import { todoStore } from "@/stores/todoStore";
+import toast from "react-hot-toast";
 
 interface TodoActionsProps {
   todoId: string;
@@ -22,6 +23,7 @@ const DeleteTodo: React.FC<TodoActionsProps> = ({ todoId }) => {
     const token = await getAccessTokenSilently();
     await todoStore.deleteTodo(todoId, token);
     setOpen(false);
+    toast.success("The todo was deleted successfully.");
   };
 
   return (

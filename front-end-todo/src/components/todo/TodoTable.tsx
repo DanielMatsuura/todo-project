@@ -68,7 +68,7 @@ const TodoTable: React.FC = observer(() => {
         <TableRow>
           <TableHead>Title</TableHead>
           <TableHead>Description</TableHead>
-          <TableHead>State</TableHead>
+          <TableHead>Status</TableHead>
           <TableHead>Date</TableHead>
           <TableHead></TableHead>
         </TableRow>

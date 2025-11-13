@@ -20,6 +20,7 @@ const ToggleStatusTodo: React.FC<Props> = ({ todo }) => {
   const handleToggle = async () => {
     try {
       await todoStore.toggleTodo(todo.id, await getAccessTokenSilently());
+      toast.success("The todo status was changed successfully.");
     } catch (error) {
       toast.error(GetErrorMessage(error));
     }

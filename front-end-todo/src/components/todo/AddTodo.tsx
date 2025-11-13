@@ -4,6 +4,7 @@ import TodoFormDialog from "./TodoFormDialog";
 import type { TodoItemBase } from "@/types/TodoItem";
 import { useUser } from "@/hooks/useUser";
 import { todoStore } from "@/stores/todoStore";
+import toast from "react-hot-toast";
 
 /**
  * Displays a button that opens a dialog to add a new Todo item.
@@ -15,6 +16,7 @@ const AddTodo: React.FC = () => {
   const handleAddTodo = async (todo: TodoItemBase) => {
     const token = await getAccessTokenSilently();
     await todoStore.addTodo(todo, token);
+    toast.success("The todo was added successfully.");
   };
 
   return (
