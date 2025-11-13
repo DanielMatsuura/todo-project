@@ -83,7 +83,7 @@ const TodoTable: React.FC = observer(() => {
         }
         {todoStore.todos?.map((task) => (
           <TableRow key={task.id}>
-            <TableCell>{task.title}</TableCell>
+            <TableCell className="w-60">{task.title}</TableCell>
             <TableCell>{task.description}</TableCell>
             <TableCell className="w-25">{task.state}</TableCell>
             <TableCell className="w-20">{formatDate(task.creationDate)}</TableCell>
@@ -118,8 +118,12 @@ const TodoTable: React.FC = observer(() => {
               <PaginationContent>
                 <PaginationItem>
                   <PaginationPrevious
-                    className="text-[12px] h-8 cursor-pointer"
-                    onClick={handlePrev}
+                    className={`text-[12px] h-8 cursor-pointer 
+                      ${page === 1 ? "opacity-50 cursor-not-allowed" : ""
+                      }`}
+                    onClick={() => {
+                      if (page > 1) handlePrev();
+                    }}
                   />
                 </PaginationItem>
 
@@ -142,8 +146,12 @@ const TodoTable: React.FC = observer(() => {
 
                 <PaginationItem>
                   <PaginationNext
-                    className="text-[12px] h-8 cursor-pointer"
-                    onClick={handleNext}
+                    className={`text-[12px] h-8 cursor-pointer 
+                      ${page === totalPages ? "opacity-50 cursor-not-allowed" : ""
+                      }`}
+                    onClick={() => {
+                      if (page < totalPages) handleNext();
+                    }}
                   />
                 </PaginationItem>
               </PaginationContent>

@@ -84,6 +84,7 @@ const TodoFormDialog: React.FC<Props> = ({ open, onOpenChange, onSubmit, todoToE
                     e.preventDefault();
                   }
                 }}
+                maxLength={100}
               />
               {errors.title && <p className="text-red-500 text-sm">{errors.title.message}</p>}
             </div>
@@ -99,6 +100,7 @@ const TodoFormDialog: React.FC<Props> = ({ open, onOpenChange, onSubmit, todoToE
                     e.preventDefault();
                   }
                 }}
+                maxLength={255}
               />
               {errors.description && (
                 <p className="text-red-500 text-sm">{errors.description.message}</p>

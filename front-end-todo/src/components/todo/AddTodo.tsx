@@ -5,6 +5,7 @@ import type { TodoItemBase } from "@/types/TodoItem";
 import { useUser } from "@/hooks/useUser";
 import { todoStore } from "@/stores/todoStore";
 import toast from "react-hot-toast";
+import { IoMdAddCircleOutline } from "react-icons/io";
 
 /**
  * Displays a button that opens a dialog to add a new Todo item.
@@ -21,8 +22,15 @@ const AddTodo: React.FC = () => {
 
   return (
     <>
-      <Button onClick={() => setOpen(true)} variant="outline" className="cursor-pointer">
-        Add To Do
+      <Button
+        onClick={() => setOpen(true)}
+        variant="outline"
+        className="cursor-pointer px-2 border-gray-600"
+      >
+        <div className="flex gap-1 items-center">
+          <IoMdAddCircleOutline />
+          Add To Do
+        </div>
       </Button>
 
       <TodoFormDialog open={open} onOpenChange={setOpen} onSubmit={handleAddTodo} />
