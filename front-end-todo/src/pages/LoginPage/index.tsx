@@ -3,6 +3,8 @@ import { FaGithub } from "react-icons/fa";
 import { useUser } from "@/hooks/useUser";
 import { SiAuth0 } from "react-icons/si";
 import SocialLoginButton from "@/components/auth/SocialLoginButton";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 /**
  * Renders the login page with multiple social login options:
@@ -12,7 +14,14 @@ import SocialLoginButton from "@/components/auth/SocialLoginButton";
  * Provides a button to sign up if the user does not have an account.
  */
 const LoginPage: React.FC = () => {
-  const { login } = useUser();
+  const { login, isAuthenticated } = useUser();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/", { replace: true });
+    }
+  }, [isAuthenticated, navigate]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
