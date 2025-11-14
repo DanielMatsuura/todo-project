@@ -1,15 +1,29 @@
-import type { Request, Response, NextFunction } from "express";
+import { Request, NextFunction, Response } from "express";
 
-export function errorHandler(
+export const errorHandler = (
   err: any,
-  _req: Request,
+  req: Request,
   res: Response,
-  _next: NextFunction
-) {
-  console.error("Caught error:", err);
+  next: NextFunction
+) => {
+  if (
+    err.name === "InvalidRequestError" ||
+    err.name === "UnauthorizedError" ||
+    err.code === "invalid_token" ||
+    err.code === "credentials_required"
+  ) {
+    return res.status(401).json({
+      message: err.message || "Unauthorized",
+    });
+  }
 
-  const status = err.status || 500;
-  const message = err.message || "Internal Server Error";
+  if (err.status) {
+    return res.status(err.status).json({
+      message: err.message || "Error",
+    });
+  }
 
-  res.status(status).json({ message });
-}
+  return res.status(500).json({
+    message: err.message || "Internal Server Error",
+  });
+};
