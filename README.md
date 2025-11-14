@@ -36,6 +36,7 @@ Una aplicación de gestión de tareas que permite añadir, listar, editar, elimi
    
      
      Frontend
+   
      cd ../front-end-todo
      
      npm install
