@@ -1,4 +1,5 @@
 import { Request, NextFunction, Response } from "express";
+import { StatusCodes } from "http-status-codes";
 
 export const errorHandler = (
   err: any,
@@ -12,7 +13,7 @@ export const errorHandler = (
     err.code === "invalid_token" ||
     err.code === "credentials_required"
   ) {
-    return res.status(401).json({
+    return res.status(StatusCodes.UNAUTHORIZED).json({
       message: err.message || "Unauthorized",
     });
   }
@@ -23,7 +24,7 @@ export const errorHandler = (
     });
   }
 
-  return res.status(500).json({
+  return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
     message: err.message || "Internal Server Error",
   });
 };
