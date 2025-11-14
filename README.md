@@ -58,7 +58,7 @@ Una aplicación de gestión de tareas que permite añadir, listar, editar, elimi
 
 ## Tecnologías
 
-- **Backend:** Node.js, Express.js
+- **Backend:** Node.js, Express.js con TypeScript
 - **Frontend:** React con TypeScript  
 - **Base de datos:** MongoDB  
 - **Autenticación:** Auth0  
