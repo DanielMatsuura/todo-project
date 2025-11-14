@@ -5,40 +5,60 @@ Una aplicación de gestión de tareas que permite añadir, listar, editar, elimi
 ## Instalación y ejecución local
 
 1. Clonar el repositorio:
+   
    git clone https://github.com/DanielMatsuura/todo-project.git
+   
    cd todo-project
    
-2. Crear archivo de variables de entorno copiando el ejemplo:
-  # Frontend
-  cd front-end-todo
-  cp .env.example .env
+3. Crear archivo de variables de entorno copiando el ejemplo:
+   
+     Frontend
+   
+     cd front-end-todo
+     
+     cp .env.example .env
   
-  # Backend
-  cd ../back-end-todo
-  cp .env.example .env
+     Backend
+     
+     cd ../back-end-todo
+     
+     cp .env.example .env
 
 3. Instalar dependencias y ejecutar:
-  # Backend
-  cd back-end-todo
-  npm install
-  npm run dev
-  
-  # Frontend
-  cd ../front-end-todo
-  npm install
-  npm run dev
+   
+     Backend
+     
+     cd back-end-todo
+     
+     npm install
+     
+     npm run dev
+   
+     
+     Frontend
+     cd ../front-end-todo
+     
+     npm install
+     
+     npm run dev
+
 
 ### Instalación y ejecución con docker
-3.2 Construir y levantar contenedores:
-docker compose up --build
 
-La aplicación estará disponible en:
-Frontend: http://localhost:5174
-Backend: http://localhost:3000/api
+   3.2 Construir y levantar contenedores:
+   
+   docker compose up --build
+   
+   La aplicación estará disponible en:
+   
+   Frontend: http://localhost:5174
+   
+   Backend: http://localhost:3000/api
+
 
 ## Tecnologías
 
-- **Backend:** Node.js, Express.js  
+- **Backend:** Node.js, Express.js
 - **Frontend:** React con TypeScript  
 - **Base de datos:** MongoDB  
 - **Autenticación:** Auth0  
